@@ -35,9 +35,11 @@ extension UrlString on PersonUrl {
     //this here refers to instance of enum PersonUrl
     switch (this) {
       case PersonUrl.persons1:
-        return "https://jsonkeeper.com/b/Z61V";
+        return "https://raw.githubusercontent.com/Snehilg/Snehilg.github.io/main/person1.json";
+      //"https://jsonkeeper.com/b/Z61V"
       case PersonUrl.persons2:
-        return "https://jsonkeeper.com/b/UFF0";
+        return "https://raw.githubusercontent.com/Snehilg/Snehilg.github.io/main/person2.json";
+      //"https://jsonkeeper.com/b/UFF0"
     }
   }
 }
