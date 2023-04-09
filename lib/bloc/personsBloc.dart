@@ -8,7 +8,7 @@ class PersonsBloc extends Bloc<LoadAction, FetchResult?> {
   final Map<PersonUrl, Iterable<Person>> _cache = {};
   //initial state is null
   PersonsBloc() : super(null) {
-    on<LoadPersonAction>(
+    on<LoadPersonsAction>(
       (event, emit) async {
         final url = event.url;
         if (_cache.containsKey(url)) {

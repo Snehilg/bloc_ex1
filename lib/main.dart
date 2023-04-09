@@ -10,17 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'modal/person.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      title: "json flutter app",
-      debugShowCheckedModeBanner: false,
-      home: BlocProvider(
-        //injecting bloc , material app wont be constant anymore
-        create: (_) => PersonsBloc(),
-        child: const HomePage(),
-      ),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 /*const Iterable<String> names = ["foo", "bar"];
@@ -64,12 +54,28 @@ Future<Iterable<Person>> getPersons(String url) => HttpClient()
     .then((list) => list.map((e) => Person.fromJSON(
         e))); //each list(will have many person data) value is used for a Person object
 
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "json flutter app",
+      debugShowCheckedModeBanner: false,
+      home: BlocProvider(
+        //injecting bloc , material app wont be constant anymore
+        create: (_) => PersonsBloc(),
+        child: const HomePage(),
+      ),
+    );
+  }
+}
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    late final Bloc myBloc;
     return Scaffold(
       backgroundColor: Colors.cyanAccent,
       appBar: AppBar(
