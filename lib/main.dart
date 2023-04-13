@@ -16,7 +16,7 @@ void main() {
 /*const Iterable<String> names = ["foo", "bar"];
 void testIt() {
   final baz = names[2];
-  //error we get {The operator '[]' isn't defined for the type 'Iterable<String>'}
+  //error we will get {The operator '[]' isn't defined for the type 'Iterable<String>'}
 }
 */
 //extension on iterable to make it more reliable
