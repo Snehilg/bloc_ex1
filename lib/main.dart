@@ -26,24 +26,6 @@ extension Subscript<T> on Iterable<T> {
   operator [](int index) => length > index ? elementAt(index) : null;
 }
 
-//defining enum for holding persons1 & persons2
-enum PersonUrl { persons1, persons2 }
-
-//extension on enum for getting url, getter function
-extension UrlString on PersonUrl {
-  String get urlString {
-    //this here refers to instance of enum PersonUrl
-    switch (this) {
-      case PersonUrl.persons1:
-        return "https://raw.githubusercontent.com/Snehilg/Snehilg.github.io/main/person1.json";
-      //"https://jsonkeeper.com/b/Z61V"
-      case PersonUrl.persons2:
-        return "https://raw.githubusercontent.com/Snehilg/Snehilg.github.io/main/person2.json";
-      //"https://jsonkeeper.com/b/UFF0"
-    }
-  }
-}
-
 //function for downloading and parsing JSON to person object //long code
 //study this well
 //this function is repository
@@ -94,8 +76,7 @@ class HomePage extends StatelessWidget {
                     //accessing bloc through context.read()
                     context.read<PersonsBloc>().add(
                           const LoadPersonsAction(
-                            url: PersonUrl.persons1,
-                          ),
+                              url: person1url, loader: getPersons),
                         );
                   },
                   child: const Text("Load JSON1"),
@@ -103,10 +84,11 @@ class HomePage extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     //accessing bloc through context.read()
+                    //anything of return type Future<Iterable<Persons>> can be a loader
+                    //so we are passing it
                     context.read<PersonsBloc>().add(
                           const LoadPersonsAction(
-                            url: PersonUrl.persons2,
-                          ),
+                              url: person2url, loader: getPersons),
                         );
                   },
                   child: const Text("Load JSON2"),
@@ -116,6 +98,8 @@ class HomePage extends StatelessWidget {
             BlocBuilder<PersonsBloc, FetchResult?>(
                 buildWhen: (previouResult, currentResult) {
               //if previous had different Iterable of persons than current
+              //anything of return type Future<Iterable<Persons>> can be a loader
+              //so we are passing it
               return (previouResult?.persons != currentResult?.persons);
             }, builder: (context, fetchResult) {
               final persons = fetchResult?.persons;
