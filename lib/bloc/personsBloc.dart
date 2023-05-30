@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_ex1/bloc/fetchResult.dart';
 import 'package:bloc_ex1/bloc/loadAction.dart';
-import 'package:bloc_ex1/main.dart';
 import 'package:bloc_ex1/modal/person.dart';
 
+//to compare persons for testing pov
 extension IsEqualToIgnoringOrdering<T> on Iterable<T> {
   //this is a method, not constructor
   bool isEqualToIgnoringOrdering(Iterable<T> other) =>

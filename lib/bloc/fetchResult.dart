@@ -17,7 +17,7 @@ class FetchResult {
   String toString() =>
       "FetchResult (isRetrievedFromCache = $isRetrievedFromCache, persons =$persons)";
 
-  //overriding equality operator for this class
+  //overriding equality operator for this class, for testing pov
   @override
   bool operator ==(covariant FetchResult other) =>
       (persons.isEqualToIgnoringOrdering(other.persons)) &&
